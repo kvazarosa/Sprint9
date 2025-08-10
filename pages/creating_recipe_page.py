@@ -50,11 +50,6 @@ class CreateRecipePage(BasePage):
 
     def upload_recipe_image(self):
         file_path = Path("/tmp/картинка.png").resolve()
-
-        # Логирование для диагностики
-        print(f"Attempting to upload image from: {file_path}")
-        print(f"File exists: {file_path.exists()}")
-
         input_element = self.wait.until(EC.presence_of_element_located(CreateRecipeLocators.FILE_UPLOAD_INPUT))
         input_element.send_keys(str(file_path))
 

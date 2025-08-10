@@ -18,8 +18,7 @@ def driver():
 
         driver = webdriver.Remote(
             command_executor='http://localhost:4444/wd/hub',
-            options=chrome_options,
-            command_timeout=60
+            options=chrome_options
         )
     else:
         chrome_options.add_argument("--window-size=1920,1200")
