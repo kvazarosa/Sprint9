@@ -15,10 +15,11 @@ def driver():
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument("--disable-extensions")
-        
+
         driver = webdriver.Remote(
             command_executor='http://localhost:4444/wd/hub',
-            options=chrome_options
+            options=chrome_options,
+            command_timeout=60
         )
     else:
         chrome_options.add_argument("--window-size=1920,1200")

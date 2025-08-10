@@ -49,15 +49,16 @@ class CreateRecipePage(BasePage):
         self.input_text(CreateRecipeLocators.FIELD_RECIPE_DESCRIPTION, description)
 
     def upload_recipe_image(self):
-        project_root = Path(__file__).parent.parent
-        file_path = project_root / "assets" / "картинка.png"
+        file_path = Path("/tmp/картинка.png").resolve()
 
-        if not file_path.exists():
-            file_path = "temp/картинка.png"
+        # Логирование для диагностики
+        print(f"Attempting to upload image from: {file_path}")
+        print(f"File exists: {file_path.exists()}")
+
         input_element = self.wait.until(EC.presence_of_element_located(CreateRecipeLocators.FILE_UPLOAD_INPUT))
         input_element.send_keys(str(file_path))
 
-        return (file_path)
+        return file_path
 
     def click_create_recipe_final_button(self):
         self.click_element(CreateRecipeLocators.CREATE_RECIPE_BUTTON)
